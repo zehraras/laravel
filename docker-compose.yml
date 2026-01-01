@@ -18,7 +18,7 @@ services:
     working_dir: /var/www
     # Yerel dizini konteyner içindeki dizine bağlar. Dosya senkronizasyonu sağlar.
     volumes:
-      - ./laravel:/var/www/html
+      - ./:/var/www
     # Bu servisin bağlanacağı ağı belirtir.
     networks:
       - laravel
