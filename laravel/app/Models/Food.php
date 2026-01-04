@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Meal;
 
 class Food extends Model
 {
-    protected $guarded = ['id'];
-    
-    function meals() {
+    public function meals()
+    {
         return $this->hasMany(Meal::class);
     }
 }

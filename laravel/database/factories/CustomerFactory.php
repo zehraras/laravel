@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer>
@@ -19,9 +20,9 @@ class CustomerFactory extends Factory
         return [
             'name' => fake()->firstName(),
             'surname' => fake()->lastName(),
-            'birthYear' => fake()->numberBetween(1950, 2025),
+            'birthyear' => fake()->numberBetween(1950, 2025),
             'gender' => fake()->randomElement(['male', 'female']),
-            'address' => fake()->asciify('**********')
+            'status' => fake()->randomElement(['active', 'inactive']),
         ];
     }
 }
