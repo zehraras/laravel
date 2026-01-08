@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Customer;
-use App\Models\Exercise;
 
 class Activity extends Model
+
 {
-    public function customer()
+
+    // It is important to remeber that u r in the activity table
+    protected $guarded = ['id'];
+    public function customer() 
     {
-        return $this->belongsTo(Customer::class);
+        return belongsTo(Customer::class);
     }
-    
-    public function exercise()
+    public function exercise() 
     {
-        return $this->belongsTo(Exercise::class);
+        return belongsTo(Exercise::class);
     }
 }

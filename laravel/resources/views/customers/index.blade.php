@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Customers</h1>
-    <a href="{{ route('customers.create') }}">Create Customer</a>
+<a href="{{ route('customers.create') }}">NEW CUSTOMER</a>
+<br /><br /><br />
 
-    @foreach ($customers as $customer)
-        <p>{{ $customer->name }}</p>
-        <p>{{ $customer->surname }}</p>
-        <p>{{ $customer->birthyear }}</p>
-        <p>{{ $customer->gender }}</p>
-        <a href="{{ route('customers.edit', $customer->id) }}">Edit</a>
-    
-    <form action="{{ route('customers.destroy', $customer->id) }}" method="post">
+@foreach ($customers as $customer)
+    <a href="{{ route('customers.show', ['customer' => $customer]) }}">
+        {{ $customer->name }} {{ $customer->surname }}
+    </a>
+    <a href="{{ route('customers.edit', ['customer' => $customer->id]) }}">(Düzenle)</a>
+
+    <form action="{{ route('customers.destroy', ['customer' => $customer->id]) }}" method="POST" >
         @csrf
-        @method('delete')
-        <button type="submit">Delete</button>
+        <input type="hidden" name="_method" value="DELETE" />
+        <input type="submit" name="submit" value="SİL" />
     </form>
-    @endforeach
-    
-</body>
-</html>
+    <br />
+    <br />
+@endforeach

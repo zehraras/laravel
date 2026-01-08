@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Activity;
+
 class Exercise extends Model
 {
-    public function activities()
-    {
-        return $this->hasMany(Activity::class);
+    protected $guarded = ['id'];
+    public function activities() {
+        return hasMany(Activity::class);
     }
 }

@@ -1,12 +1,10 @@
-<form action="{{ route('customers.update', $customer->id) }}" method="post">
+<form action="{{ route('customers.update', ['customer'=> $customer->id]) }}" method="POST"> 
+    // It is important to focus on that first one sould be post
+    <input type="hidden" name="_method" value="PUT" />
     @csrf
-    @method('put')
-    <input type="string" name="name" placeholder="Name" value="{{ $customer->name }}"><br>
-    <input type="string" name="surname" placeholder="Surname" value="{{ $customer->surname }}"><br>
-    <input type="integer" name="birthyear" placeholder="Birthyear" value="{{ $customer->birthyear }}"><br>
-    <select name="gender" placeholder="Gender" value="{{ $customer->gender }}">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-    </select>
-    <button type="submit">Update</button>
+    Name: <input type="text" name="name" value="{{ $customer->name }}" /><br />
+    Surname: <input type="text" name="surname" value="{{ $customer->surname }}" /><br />
+    Gender: <input type="text" name="gender" value="{{ $customer->gender }}" /><br />
+    Birth Year: <input type="text" name="birthYear" value="{{ $customer->birthYear }}" /><br /><br />
+    <input type="submit" name="submit" value="GÜNCELLE" />
 </form>

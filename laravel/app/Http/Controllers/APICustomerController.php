@@ -5,18 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class APICustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // 1. Get all records from the database
         $customers = Customer::all();
-        // 2. Load the view and pass the data
-        return view('customers.index', compact ('customers'));
-
+        return response()->json($customers);
     }
 
     /**
@@ -24,8 +21,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-
-        return view('customers.create');
+        //
     }
 
     /**
@@ -33,14 +29,13 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        Customer::create([
+        $customer = Customer::create([
         'name'      => $request->post('name'),
         'surname'   => $request->post('surname'),
         'gender'    => $request->post('gender'),
         'birthYear' => $request->post('birthYear')
     ]);
-
-    return redirect()->route('customers.index');
+    return response()->json($customer);
     }
 
     /**
@@ -48,7 +43,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view ('customers.show', compact('customer'));
+        //
     }
 
     /**
@@ -56,7 +51,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view ('customers.edit', compact('customer'));
+        //
     }
 
     /**
@@ -64,11 +59,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        // Update the customer with all data from the request
-        $customer->update($request->post());
-
-        // Redirect back to the list page
-        return redirect()->route('customers.index');
+        //
     }
 
     /**
@@ -76,7 +67,6 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        $customer->delete();
-    return redirect()->route('customers.index');
+        //
     }
 }
